@@ -6,11 +6,16 @@ import {
   Patch,
   Param,
   Delete,
+  Res,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
+import { uuidDto } from './dto/uuid.dto';
+import { UpdatePasswordDto } from './dto/updatePassword.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -28,17 +33,50 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  async findOne(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+  ) {
+    const { id } = idDto;
+    const user = this.userService.findOne(id);
+
+    if (user === undefined) {
+      response.status(404).send();
+    }
+    if (user) {
+      response.status(200).send(user);
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @Put(':id')
+  update(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+    @Body() updatePasswordDto: UpdatePasswordDto,
+  ) {
+    const { id } = idDto;
+    const user = this.userService.update(id, updatePasswordDto);
+
+    if (user === undefined) {
+      response.status(404).send();
+    }
+    if (user === null) {
+      response.status(403).send();
+    }
+    if (user) {
+      response.status(200).send(user);
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+    const { id } = idDto;
+    const result = this.userService.remove(id);
+    if (result === undefined) {
+      response.status(404).send();
+    }
+    if (result === null) {
+      response.status(204).send();
+    }
   }
 }
