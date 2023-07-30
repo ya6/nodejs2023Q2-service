@@ -5,6 +5,7 @@ const db = {
       return user;
     },
     save: (user: IUser): IUser => {
+      console.log('user save-->', user.id);
       db.user.data.push(user);
       return user;
     },
@@ -13,7 +14,8 @@ const db = {
       if (!user) {
         return undefined;
       }
-      db.user.data = [...db.user.data.filter((user) => user.id !== id)];
+      console.log('user delete-->', id);
+      db.user.data = [...db.user.data.filter((us) => us.id !== id)];
       return null;
     },
     update: (updatedUser: IUser) => {
@@ -31,22 +33,15 @@ const db = {
     findOne: (id: string): IUser | undefined => {
       return db.user.data.find((user) => user.id === id);
     },
-    data: [
-      {
-        id: 'b42ca906-b273-4315-97a0-0df2352aa6eb',
-        login: 'alex',
-        password: 'pwd',
-        version: 1,
-        createdAt: 1690639785750,
-        updatedAt: 1690639785750,
-      },
-    ],
+    data: [],
   },
   track: {
     create: (track: ITrack): ITrack => {
       return track;
     },
     save: (track: ITrack): ITrack => {
+      console.log('track save-->', track.id);
+
       db.track.data.push(track);
       return track;
     },
@@ -55,7 +50,11 @@ const db = {
       if (!track) {
         return undefined;
       }
-      db.track.data = [...db.track.data.filter((track) => track.id !== id)];
+      console.log('track delete-->', id);
+      db.track.data = [...db.track.data.filter((tr) => tr.id !== id)];
+      db.favorites.data.tracks = db.favorites.data.tracks.filter(
+        (el) => el.id !== id,
+      );
       return null;
     },
     update: (updatedTrack: ITrack) => {
@@ -72,18 +71,108 @@ const db = {
     findOne: (id: string): ITrack | undefined => {
       return db.track.data.find((track) => track.id === id);
     },
-    data: [
-      {
-        id: '292cce2a-4fb0-4503-8496-ee29a4937646',
-        name: 'TEST_TRACK',
-        artistId: null,
-        albumId: null,
-        duration: 199,
-      },
-    ],
+    data: [],
   },
-  artist: {},
-  album: {},
-  favorites: {},
+  artist: {
+    create: (artist: IArtist): IArtist => {
+      return artist;
+    },
+    save: (artist: IArtist): IArtist => {
+      console.log('artist save-->', artist.id);
+      db.artist.data.push(artist);
+      return artist;
+    },
+    delete: (id: string) => {
+      const artist = db.artist.findOne(id);
+      if (!artist) {
+        return undefined;
+      }
+      console.log('artist del-->', id);
+      db.artist.data = [...db.artist.data.filter((art) => art.id !== id)];
+      db.favorites.data.artists = db.favorites.data.artists.filter(
+        (el) => el.id !== id,
+      );
+      return null;
+    },
+    update: (updatedArtist: IArtist) => {
+      db.artist.data = [
+        ...db.artist.data.map((artist) =>
+          artist.id === updatedArtist.id ? updatedArtist : artist,
+        ),
+      ];
+      return updatedArtist;
+    },
+    findAll: (): IArtist[] | [] => {
+      return db.artist.data;
+    },
+    findOne: (id: string) => {
+      return db.artist.data.find((artist) => artist.id === id);
+    },
+    data: [],
+  },
+  album: {
+    create: (album: IAlbum): IAlbum => {
+      return album;
+    },
+    save: (album: IAlbum): IAlbum => {
+      db.album.data.push(album);
+      console.log('album save-->', album.id);
+      return album;
+    },
+    delete: (id: string) => {
+      const album = db.album.findOne(id);
+      if (!album) {
+        return undefined;
+      }
+      console.log('album del-->', id);
+      db.album.data = [...db.album.data.filter((alb) => alb.id !== id)];
+      db.favorites.data.albums = db.favorites.data.albums.filter(
+        (el) => el.id !== id,
+      );
+
+      return null;
+    },
+    update: (updatedAlbum: IAlbum) => {
+      db.album.data = [
+        ...db.album.data.map((album) =>
+          album.id === updatedAlbum.id ? updatedAlbum : album,
+        ),
+      ];
+      return updatedAlbum;
+    },
+    findAll: (): IAlbum[] | [] => {
+      return db.album.data;
+    },
+    findOne: (id: string): IAlbum | undefined => {
+      return db.album.data.find((album) => album.id === id);
+    },
+    data: [],
+  },
+  favorites: {
+    findOne(id: string, resourceName: string) {
+      const result = db.favorites.data[resourceName].find((el) => el.id === id);
+      return result;
+    },
+    save(id: string, resourceName: string, entity) {
+      const result = db.favorites.findOne(id, resourceName);
+      if (result === undefined) {
+        console.log('fav save -->', id, resourceName);
+        db.favorites.data[resourceName].push(structuredClone(entity));
+      }
+    },
+    delete: (id: string, resourceName: string) => {
+      const result = db.favorites.findOne(id, resourceName);
+      if (result === undefined) {
+        return undefined;
+      }
+      console.log('fav del -->', id, resourceName);
+      db.favorites.data[resourceName] = [
+        ...db.favorites.data[resourceName].filter((el) => el.id !== id),
+      ];
+
+      return null;
+    },
+    data: { artists: [], albums: [], tracks: [] },
+  },
 };
 export default db;

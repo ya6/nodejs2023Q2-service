@@ -10,18 +10,18 @@ export class CreateTrackDto {
   name: string;
 
   @ApiProperty({
-    description: 'Artist',
+    description: 'Artist id',
     type: String,
-    example: 'QUEEN',
+    example: '',
   })
   @IsOptional()
   @IsString()
   artistId: string | null; // refers to Artist
 
   @ApiProperty({
-    description: 'Album',
+    description: 'Album id',
     type: String,
-    example: 'Jazz',
+    example: '',
   })
   @IsOptional()
   @IsString()

@@ -50,10 +50,10 @@ export class TrackController {
   update(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
-    @Body() updatePasswordDto: UpdateTrackDto,
+    @Body() updateTrackDto: UpdateTrackDto,
   ) {
     const { id } = idDto;
-    const track = this.trackService.update(id, updatePasswordDto);
+    const track = this.trackService.update(id, updateTrackDto);
 
     if (track === undefined) {
       response.status(404).send();

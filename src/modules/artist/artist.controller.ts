@@ -3,14 +3,17 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
+  Res,
 } from '@nestjs/common';
 import { ArtistService } from './artist.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
+import { uuidDto } from 'src/common/dto/uuid.dto';
 
 @ApiTags('Artist')
 @Controller('artist')
@@ -28,17 +31,47 @@ export class ArtistController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.artistService.findOne(+id);
+  findOne(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+  ) {
+    const { id } = idDto;
+    const artist = this.artistService.findOne(id);
+
+    if (artist === undefined) {
+      response.status(404).send();
+    }
+    if (artist) {
+      response.status(200).send(artist);
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateArtistDto: UpdateArtistDto) {
-    return this.artistService.update(+id, updateArtistDto);
+  @Put(':id')
+  update(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+    @Body() updateArtistDto: UpdateArtistDto,
+  ) {
+    const { id } = idDto;
+    const artist = this.artistService.update(id, updateArtistDto);
+
+    if (artist === undefined) {
+      response.status(404).send();
+    }
+    if (artist) {
+      response.status(200).send(artist);
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.artistService.remove(+id);
+  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+    const { id } = idDto;
+    const result = this.artistService.remove(id);
+    if (result === undefined) {
+      response.status(404).send();
+    }
+    if (result === null) {
+      response.status(204).send();
+    }
   }
 }

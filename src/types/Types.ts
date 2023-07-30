@@ -38,3 +38,8 @@ interface IchangePassword {
   oldPassword: string; // previous password
   newPassword: string; // new password
 }
+export interface FavoritesResponse {
+  artists: IArtist[];
+  albums: IAlbum[];
+  tracks: ITrack[];
+}
