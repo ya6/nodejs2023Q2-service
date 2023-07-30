@@ -40,7 +40,7 @@ export class AlbumService {
 
     const chagedAlbum = {
       ...album,
-      ...UpdateAlbumDto,
+      ...updateAlbumDto,
     };
     const updatedAlbumt = db.album.update(chagedAlbum);
     return updatedAlbumt;

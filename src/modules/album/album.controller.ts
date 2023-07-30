@@ -53,13 +53,12 @@ export class AlbumController {
     @Body() updateAlbumDto: UpdateAlbumDto,
   ) {
     const { id } = idDto;
-    const artist = this.albumService.update(id, updateAlbumDto);
-
-    if (artist === undefined) {
+    const album = this.albumService.update(id, updateAlbumDto);
+    if (album === undefined) {
       response.status(404).send();
     }
-    if (artist) {
-      response.status(200).send(artist);
+    if (album) {
+      response.status(200).send(album);
     }
   }
 

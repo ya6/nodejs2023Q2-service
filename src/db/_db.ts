@@ -5,6 +5,7 @@ const db = {
       return user;
     },
     save: (user: IUser): IUser => {
+      console.log('user save-->', user.id);
       db.user.data.push(user);
       return user;
     },
@@ -13,6 +14,7 @@ const db = {
       if (!user) {
         return undefined;
       }
+      console.log('user delete-->', id);
       db.user.data = db.user.data.filter((us) => us.id !== id);
       return null;
     },
@@ -38,6 +40,8 @@ const db = {
       return track;
     },
     save: (track: ITrack): ITrack => {
+      console.log('track save-->', track.id);
+
       db.track.data.push(track);
       return track;
     },
@@ -46,6 +50,7 @@ const db = {
       if (!track) {
         return undefined;
       }
+      console.log('track delete-->', id);
       db.track.data = db.track.data.filter((tr) => tr.id !== id);
       db.favorites.data.tracks = db.favorites.data.tracks.filter(
         (el) => el.id !== id,
@@ -73,6 +78,7 @@ const db = {
       return artist;
     },
     save: (artist: IArtist): IArtist => {
+      console.log('artist save-->', artist.id);
       db.artist.data.push(artist);
       return artist;
     },
@@ -81,10 +87,12 @@ const db = {
       if (!artist) {
         return undefined;
       }
+      console.log('artist del-->', id);
       db.artist.data = db.artist.data.filter((art) => art.id !== id);
       db.favorites.data.artists = db.favorites.data.artists.filter(
         (el) => el.id !== id,
       );
+      // set to null track, album
       db.track.data = db.track.data.map((tr) =>
         tr.artistId === id ? { ...tr, artistId: null } : tr,
       );
@@ -115,6 +123,7 @@ const db = {
     },
     save: (album: IAlbum): IAlbum => {
       db.album.data.push(album);
+      console.log('album save-->', album.id);
       return album;
     },
     delete: (id: string) => {
@@ -122,10 +131,12 @@ const db = {
       if (!album) {
         return undefined;
       }
+      console.log('album del-->', id);
       db.album.data = db.album.data.filter((alb) => alb.id !== id);
       db.favorites.data.albums = db.favorites.data.albums.filter(
         (el) => el.id !== id,
       );
+      // set to null track
       db.track.data = db.track.data.map((tr) =>
         tr.albumId === id ? { ...tr, albumId: null } : tr,
       );
@@ -155,6 +166,7 @@ const db = {
     save(id: string, resourceName: string, entity) {
       const result = db.favorites.findOne(id, resourceName);
       if (result === undefined) {
+        console.log('fav save -->', id, resourceName);
         db.favorites.data[resourceName].push(structuredClone(entity));
       }
     },
@@ -163,6 +175,7 @@ const db = {
       if (result === undefined) {
         return undefined;
       }
+      console.log('fav del -->', id, resourceName);
       db.favorites.data[resourceName] = [
         ...db.favorites.data[resourceName].filter((el) => el.id !== id),
       ];
