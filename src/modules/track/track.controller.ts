@@ -3,14 +3,17 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
+  Res,
 } from '@nestjs/common';
 import { TrackService } from './track.service';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { uuidDto } from '../../common/dto/uuid.dto';
+import { Response } from 'express';
 
 @ApiTags('Track')
 @Controller('track')
@@ -28,17 +31,47 @@ export class TrackController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.trackService.findOne(+id);
+  async findOne(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+  ) {
+    const { id } = idDto;
+    const track = this.trackService.findOne(id);
+
+    if (track === undefined) {
+      response.status(404).send();
+    }
+    if (track) {
+      response.status(200).send(track);
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTrackDto: UpdateTrackDto) {
-    return this.trackService.update(+id, updateTrackDto);
+  @Put(':id')
+  update(
+    @Res({ passthrough: true }) response: Response,
+    @Param() idDto: uuidDto,
+    @Body() updatePasswordDto: UpdateTrackDto,
+  ) {
+    const { id } = idDto;
+    const track = this.trackService.update(id, updatePasswordDto);
+
+    if (track === undefined) {
+      response.status(404).send();
+    }
+    if (track) {
+      response.status(200).send(track);
+    }
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.trackService.remove(+id);
+  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+    const { id } = idDto;
+    const result = this.trackService.remove(id);
+    if (result === undefined) {
+      response.status(404).send();
+    }
+    if (result === null) {
+      response.status(204).send();
+    }
   }
 }

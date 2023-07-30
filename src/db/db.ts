@@ -42,8 +42,47 @@ const db = {
       },
     ],
   },
+  track: {
+    create: (track: ITrack): ITrack => {
+      return track;
+    },
+    save: (track: ITrack): ITrack => {
+      db.track.data.push(track);
+      return track;
+    },
+    delete: (id: string) => {
+      const track = db.track.findOne(id);
+      if (!track) {
+        return undefined;
+      }
+      db.track.data = [...db.track.data.filter((track) => track.id !== id)];
+      return null;
+    },
+    update: (updatedTrack: ITrack) => {
+      db.track.data = [
+        ...db.track.data.map((track) =>
+          track.id === updatedTrack.id ? updatedTrack : track,
+        ),
+      ];
+      return updatedTrack;
+    },
+    findAll: (): ITrack[] | [] => {
+      return db.track.data;
+    },
+    findOne: (id: string): ITrack | undefined => {
+      return db.track.data.find((track) => track.id === id);
+    },
+    data: [
+      {
+        id: '292cce2a-4fb0-4503-8496-ee29a4937646',
+        name: 'TEST_TRACK',
+        artistId: null,
+        albumId: null,
+        duration: 199,
+      },
+    ],
+  },
   artist: {},
-  track: {},
   album: {},
   favorites: {},
 };

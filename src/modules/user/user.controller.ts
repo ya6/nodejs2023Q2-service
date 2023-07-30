@@ -14,7 +14,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
-import { uuidDto } from './dto/uuid.dto';
+import { uuidDto } from '../../common/dto/uuid.dto';
 import { UpdatePasswordDto } from './dto/updatePassword.dto';
 
 @ApiTags('User')
