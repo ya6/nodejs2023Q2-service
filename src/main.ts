@@ -21,7 +21,7 @@ async function bootstrap() {
     .addTag('Part 1')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/doc', app, document);
+  SwaggerModule.setup('/docs', app, document);
 
   const configService = app.get(ConfigService);
   await app.listen(configService.get('PORT'));
