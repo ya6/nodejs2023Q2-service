@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import db from 'src/db/db';
 import { v4 as uuidv4 } from 'uuid';
 import { IUser } from '../../types/Types';
@@ -59,6 +58,7 @@ export class UserService {
 
   cleanUser(user: IUser) {
     const { password, ...rest } = user;
+    password; // del
     return rest;
   }
 }

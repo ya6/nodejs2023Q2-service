@@ -1,15 +1,5 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Post, Param, Delete, Res } from '@nestjs/common';
 import { FavoritesService } from './favorites.service';
-import { CreateFavoriteDto } from './dto/create-favorite.dto';
-import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from 'src/common/dto/uuid.dto';

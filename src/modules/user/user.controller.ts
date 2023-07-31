@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Res,
@@ -11,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from '../../common/dto/uuid.dto';

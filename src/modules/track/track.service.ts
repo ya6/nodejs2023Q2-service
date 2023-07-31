@@ -33,7 +33,7 @@ export class TrackService {
     return track;
   }
 
-  update(id: string, updatePasswordDto: UpdateTrackDto) {
+  update(id: string, updateTrackDto: UpdateTrackDto) {
     const track = db.track.findOne(id);
     if (track === undefined) {
       return undefined;
@@ -41,7 +41,7 @@ export class TrackService {
 
     const chagedTrack = {
       ...track,
-      ...UpdateTrackDto,
+      ...updateTrackDto,
     };
     const updatedTrack = db.track.update(chagedTrack);
     return updatedTrack;

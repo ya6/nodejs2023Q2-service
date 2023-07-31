@@ -34,10 +34,11 @@ export interface IFavorites {
   tracks: string[]; // favorite tracks ids
 }
 
-interface IchangePassword {
+export interface IchangePassword {
   oldPassword: string; // previous password
   newPassword: string; // new password
 }
+
 export interface FavoritesResponse {
   artists: IArtist[];
   albums: IAlbum[];

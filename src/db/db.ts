@@ -1,4 +1,4 @@
-import { IUser, IArtist, ITrack, IAlbum, IFavorites } from '../types/Types';
+import { IUser, IArtist, ITrack, IAlbum } from '../types/Types';
 const db = {
   user: {
     create: (user: IUser): IUser => {

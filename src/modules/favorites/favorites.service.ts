@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFavoriteDto } from './dto/create-favorite.dto';
-import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import db from 'src/db/db';
 import { TrackService } from '../track/track.service';
 import { ArtistService } from '../artist/artist.service';
