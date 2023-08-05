@@ -1,15 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import db from 'src/db/db';
 import { v4 as uuidv4 } from 'uuid';
 import { IUser } from '../../types/Types';
 import { UpdatePasswordDto } from './dto/updatePassword.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from '../../entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
     const now = new Date().getTime();
-    const newUser = db.user.create({
+    const newUser = this.userRepository.create({
       id: uuidv4(),
       login: createUserDto.login,
       password: createUserDto.password,
@@ -17,30 +27,29 @@ export class UserService {
       createdAt: now,
       updatedAt: now,
     });
-    const createdUser = db.user.save(newUser);
+    const createdUser = await this.userRepository.save(newUser);
     return this.cleanUser(createdUser);
   }
 
-  findAll() {
-    const users = db.user.findAll();
+  async findAll() {
+    const users = await this.userRepository.find();
     return users.map((user: IUser) => this.cleanUser(user));
   }
 
-  findOne(id: string) {
-    const user = db.user.findOne(id);
-    if (user === undefined) {
-      return undefined;
-    }
+  async findOne(id: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
     return this.cleanUser(user);
   }
 
-  update(id: string, updatePasswordDto: UpdatePasswordDto) {
-    const user = db.user.findOne(id);
-    if (user === undefined) {
-      return undefined;
-    }
-    if (user.password !== updatePasswordDto.oldPassword) {
+  async update(id: string, updatePasswordDto: UpdatePasswordDto) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+
+    if (!user) {
       return null;
+    }
+
+    if (user.password !== updatePasswordDto.oldPassword) {
+      return false;
     }
     const chagedUser = {
       ...user,
@@ -48,17 +57,26 @@ export class UserService {
       version: user.version + 1,
       updatedAt: new Date().getTime(),
     };
-    const updatedUser = db.user.update(chagedUser);
+    const updatedUser = await this.userRepository.save(chagedUser);
+
     return this.cleanUser(updatedUser);
   }
 
-  remove(id: string) {
-    return db.user.delete(id);
+  async remove(id: string) {
+    const { affected } = await this.userRepository.delete(id);
+    return affected;
   }
 
   cleanUser(user: IUser) {
-    const { password, ...rest } = user;
+    if (!user) {
+      return user;
+    }
+    const { password, createdAt, updatedAt, ...rest } = user;
     password; // del
-    return rest;
+    return {
+      ...rest,
+      createdAt: Number(createdAt),
+      updatedAt: Number(updatedAt),
+    };
   }
 }

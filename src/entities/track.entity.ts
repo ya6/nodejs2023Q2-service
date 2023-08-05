@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Album } from './album.entity';
+import { Artist } from './artist.entity';
 
 @Entity()
 export class Track {
@@ -8,11 +16,13 @@ export class Track {
   @Column()
   name: string;
 
-  @Column()
-  artistId: string;
+  @OneToOne(() => Artist)
+  @JoinColumn()
+  artist: Artist;
 
-  @Column()
-  albumId: string;
+  @OneToOne(() => Album)
+  @JoinColumn()
+  album: Album;
 
   @Column()
   duration: number;

@@ -7,6 +7,7 @@ import {
   Delete,
   Res,
   Put,
+  HttpCode,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,13 +22,13 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.userService.create(createUserDto);
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findAll() {
+    return await this.userService.findAll();
   }
 
   @Get(':id')
@@ -36,9 +37,9 @@ export class UserController {
     @Param() idDto: uuidDto,
   ) {
     const { id } = idDto;
-    const user = this.userService.findOne(id);
+    const user = await this.userService.findOne(id);
 
-    if (user === undefined) {
+    if (user === null) {
       response.status(404).send();
     }
     if (user) {
@@ -47,18 +48,18 @@ export class UserController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
     @Body() updatePasswordDto: UpdatePasswordDto,
   ) {
     const { id } = idDto;
-    const user = this.userService.update(id, updatePasswordDto);
+    const user = await this.userService.update(id, updatePasswordDto);
 
-    if (user === undefined) {
+    if (user === null) {
       response.status(404).send();
     }
-    if (user === null) {
+    if (user === false) {
       response.status(403).send();
     }
     if (user) {
@@ -67,13 +68,15 @@ export class UserController {
   }
 
   @Delete(':id')
-  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+  async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
-    const result = this.userService.remove(id);
-    if (result === undefined) {
+    const result = await this.userService.remove(id);
+    console.log('del', result);
+
+    if (result === 0) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result === 1) {
       response.status(204).send();
     }
   }

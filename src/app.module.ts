@@ -27,7 +27,7 @@ import { DataSource } from 'typeorm';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        entities: [__dirname + '/../../entities/*.entity.js'],
+        entities: [__dirname + '/entities/*.entity.js'],
         synchronize: true, // disable for prod
       }),
       dataSourceFactory: async (options) => {

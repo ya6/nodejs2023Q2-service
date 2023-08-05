@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Artist } from './artist.entity';
 
 @Entity()
 export class Album {
@@ -11,6 +12,9 @@ export class Album {
   @Column()
   year: string;
 
-  @Column({ nullable: true })
-  artistId: string;
+  // @Column({ nullable: true })
+  // artistId: string;
+
+  @ManyToOne(() => Artist, (artist) => artist.albums)
+  artist: Artist;
 }
