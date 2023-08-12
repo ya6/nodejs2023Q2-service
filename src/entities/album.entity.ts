@@ -15,6 +15,6 @@ export class Album {
   @Column({ default: false })
   isFavorite: boolean;
 
-  @ManyToOne(() => Artist, (artist) => artist.albums)
+  @ManyToOne(() => Artist, (artist) => artist.albums, { onDelete: 'SET NULL' })
   artist: Artist;
 }

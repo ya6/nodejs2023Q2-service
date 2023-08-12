@@ -46,7 +46,7 @@ export class FavoritesController {
     const { id } = idDto;
 
     const result = await this.favoritesService.createFavArtist(id);
-    console.log('fav cr artist res', result);
+    // console.log('fav cr artist res', result);
 
     if (result === null) {
       response.status(422).send();

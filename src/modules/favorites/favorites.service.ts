@@ -11,13 +11,9 @@ export class FavoritesService {
     private readonly albumService: AlbumService,
   ) {}
   async findAll() {
-    // del is Fav check output
     const favArtists = await this.artistService.findFavorites();
-    // console.log('-- favArtists --> ', favArtists);
-
     const favAlbums = await this.albumService.findFavorites();
-    console.log('-- favAlbums --> ', favAlbums);
-    const favTracks = await this.trackService.findFavorites(); //  ? change to find with relations ?
+    const favTracks = await this.trackService.findFavorites();
     return { artists: favArtists, albums: favAlbums, tracks: favTracks };
   }
   // track
@@ -26,8 +22,7 @@ export class FavoritesService {
     if (track === null) {
       return null;
     }
-    await this.trackService.update(id, { isFavorite: true });
-    return id; // ???
+    return await this.trackService.update(id, { isFavorite: true });
   }
   async removeFavTrack(id: string) {
     const track = await this.trackService.findOne(id);
@@ -39,34 +34,30 @@ export class FavoritesService {
 
   // artist
   async createFavArtist(id: string) {
-    console.log('createFavArtist-->', id);
     const artist = await this.artistService.findOne(id);
-    console.log('artist', artist);
+
     if (artist === null) {
       return null;
     }
-    await this.artistService.update(id, { isFavorite: true });
-    return id;
+    return await this.artistService.update(id, { isFavorite: true });
   }
+
   async removeFavArtist(id: string) {
     const artist = await this.artistService.findOne(id);
     if (artist === null) {
       return null;
     }
-    await this.artistService.update(id, { isFavorite: false });
+    return await this.artistService.update(id, { isFavorite: false });
   }
+
   // album
   async createFavAlbum(id: string) {
-    console.log('createFavAlbum-->', id);
-
     const album = await this.albumService.findOne(id);
-    console.log('album', album);
 
     if (album === null) {
       return null;
     }
-    await this.albumService.update(id, { isFavorite: true });
-    return id;
+    return await this.albumService.update(id, { isFavorite: true });
   }
 
   async removeFavAlbum(id: string) {
@@ -74,6 +65,6 @@ export class FavoritesService {
     if (album === null) {
       return null;
     }
-    await this.albumService.update(id, { isFavorite: false });
+    return await this.albumService.update(id, { isFavorite: false });
   }
 }

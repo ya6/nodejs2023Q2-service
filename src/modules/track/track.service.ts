@@ -5,26 +5,38 @@ import { v4 as uuidv4 } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Track } from '../../entities/track.entity';
 import { Repository } from 'typeorm';
+import { Artist } from 'src/entities/artist.entity';
+import { Album } from 'src/entities/album.entity';
 
 @Injectable()
 export class TrackService {
   constructor(
     @InjectRepository(Track) private trackRepository: Repository<Track>,
+    @InjectRepository(Artist) private artistRepository: Repository<Artist>,
+    @InjectRepository(Album) private albumRepository: Repository<Album>,
   ) {}
   async create(createTrackDto: CreateTrackDto) {
     const { name, artistId, albumId, duration } = createTrackDto; //???
-    const artist = {}; // add load
-    const album = {};
+    let artist = null;
+    let album = null;
+    if (artistId) {
+      artist = await this.artistRepository.findOne({ where: { id: artistId } });
+    }
+    if (albumId) {
+      album = await this.albumRepository.findOne({ where: { id: albumId } });
+    }
 
     const newTrack = this.trackRepository.create({
       id: uuidv4(),
       name,
-      artist: artist || null,
-      album: album || null,
+      artist: artist,
+      album: album,
       duration,
     });
-    const createdTrack = this.trackRepository.save(newTrack);
-    return createdTrack;
+
+    const createdTrack = await this.trackRepository.save(newTrack);
+
+    return this.cleanTrack(createdTrack);
   }
 
   async findAll() {
@@ -33,7 +45,11 @@ export class TrackService {
   }
 
   async findFavorites() {
-    const tracks = await this.trackRepository.find({
+    const favTracks = await this.trackRepository.find({
+      relations: {
+        artist: true,
+        album: true,
+      },
       where: { isFavorite: true },
       select: {
         id: true,
@@ -43,12 +59,12 @@ export class TrackService {
         duration: true,
       },
     });
-    return tracks;
+    return favTracks.map((el) => this.cleanTrack(el));
   }
 
   async findOne(id: string) {
     const track = await this.trackRepository.findOne({ where: { id } });
-    return track;
+    return this.cleanTrack(track);
   }
 
   async update(id: string, updateTrackDto: UpdateTrackDto) {
@@ -68,5 +84,17 @@ export class TrackService {
   async remove(id: string) {
     const { affected } = await this.trackRepository.delete(id);
     return affected;
+  }
+
+  cleanTrack(track) {
+    if (!track) {
+      return null;
+    }
+    const { isFavorite, album, artist, ...rest } = track;
+    return {
+      ...rest,
+      albumId: track.album?.id || null,
+      artistId: track.artist?.id || null,
+    };
   }
 }

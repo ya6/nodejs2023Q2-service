@@ -5,41 +5,52 @@ import { v4 as uuidv4 } from 'uuid';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Album } from 'src/entities/album.entity';
 import { Repository } from 'typeorm';
+import { Artist } from 'src/entities/artist.entity';
 
 @Injectable()
 export class AlbumService {
   constructor(
     @InjectRepository(Album) private albumRepository: Repository<Album>,
+    @InjectRepository(Artist) private artistRepository: Repository<Artist>,
   ) {}
+
   async create(reateAlbumDto: CreateAlbumDto) {
     const { name, year, artistId } = reateAlbumDto; // ???
-    const artist = {};
+
+    let artist = null;
+    if (artistId) {
+      artist = await this.artistRepository.findOne({ where: { id: artistId } });
+    }
     const newAlbum = this.albumRepository.create({
       id: uuidv4(),
       name,
       year,
-      artist: artist || null, // refers to Artist
+      artist: artist, // refers to Artist
     });
     const createdAlbum = await this.albumRepository.save(newAlbum);
-    return createdAlbum;
+
+    return this.cleanAlbum(createdAlbum);
   }
 
   async findAll() {
-    return await this.albumRepository.find();
+    const albums = await this.albumRepository.find();
+    return albums;
   }
+
   async findFavorites() {
-    return await this.albumRepository.find({
+    const favAlbums = await this.albumRepository.find({
       relations: {
         artist: true,
       },
       where: { isFavorite: true },
       select: { id: true, name: true, year: true, artist: { id: true } },
     });
+    return favAlbums.map((el) => this.cleanAlbum(el));
   }
 
   async findOne(id: string) {
     const album = await this.albumRepository.findOne({ where: { id } });
-    return album;
+    return this.cleanAlbum(album);
   }
 
   async update(id: string, updateAlbumDto: UpdateAlbumDto) {
@@ -59,5 +70,16 @@ export class AlbumService {
   async remove(id: string) {
     const { affected } = await this.albumRepository.delete(id);
     return affected;
+  }
+
+  cleanAlbum(album) {
+    if (!album) {
+      return null;
+    }
+    const { isFavorite, artist, ...rest } = album;
+    return {
+      ...rest,
+      artistId: album.artist?.id || null,
+    };
   }
 }

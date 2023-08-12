@@ -29,11 +29,11 @@ export class ArtistService {
   }
 
   async findFavorites() {
-    const artists = await this.artistRepository.find({
+    const favArtists = await this.artistRepository.find({
       where: { isFavorite: true },
       select: { id: true, name: true, grammy: true },
     });
-    return artists;
+    return favArtists;
   }
 
   async findOne(id: string) {
@@ -42,10 +42,7 @@ export class ArtistService {
   }
 
   async update(id: string, updateArtistDto: UpdateArtistDto) {
-    console.log('atrist update-->', id, updateArtistDto);
-
     const artist = await this.artistRepository.findOne({ where: { id } });
-    console.log('artistServise update artist', artist);
 
     if (artist === null) {
       return null;

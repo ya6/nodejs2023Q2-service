@@ -19,14 +19,17 @@ export class Track {
   @Column({ default: false })
   isFavorite: boolean;
 
-  @OneToOne(() => Artist)
+  @OneToOne(() => Artist, () => {}, { onDelete: 'SET NULL' })
   @JoinColumn()
   artist: Artist;
 
-  @OneToOne(() => Album)
+  @OneToOne(() => Album, () => {}, { onDelete: 'SET NULL' })
   @JoinColumn()
   album: Album;
 
   @Column()
   duration: number;
 }
+
+//  @ManyToOne(() => Artist, (artist) => artist.albums, { onDelete: 'SET NULL' })
+//   artist: Artist;
