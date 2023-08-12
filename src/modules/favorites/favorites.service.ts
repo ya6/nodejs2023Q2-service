@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import db from 'src/db/db';
 import { TrackService } from '../track/track.service';
 import { ArtistService } from '../artist/artist.service';
 import { AlbumService } from '../album/album.service';
+
 @Injectable()
 export class FavoritesService {
   constructor(
@@ -10,45 +10,70 @@ export class FavoritesService {
     private readonly artistService: ArtistService,
     private readonly albumService: AlbumService,
   ) {}
-  findAll() {
-    return db.favorites.data;
+  async findAll() {
+    // del is Fav check output
+    const favArtists = await this.artistService.findFavorites();
+    // console.log('-- favArtists --> ', favArtists);
+
+    const favAlbums = await this.albumService.findFavorites();
+    console.log('-- favAlbums --> ', favAlbums);
+    const favTracks = await this.trackService.findFavorites(); //  ? change to find with relations ?
+    return { artists: favArtists, albums: favAlbums, tracks: favTracks };
   }
   // track
-  createFavTrack(id: string) {
-    const track = this.trackService.findOne(id);
-    if (track === undefined) {
-      return undefined;
+  async createFavTrack(id: string) {
+    const track = await this.trackService.findOne(id);
+    if (track === null) {
+      return null;
     }
-    db.favorites.save(id, 'tracks', track);
-    return id;
+    await this.trackService.update(id, { isFavorite: true });
+    return id; // ???
   }
-  removeFavTrack(id: string) {
-    return db.favorites.delete(id, 'tracks');
+  async removeFavTrack(id: string) {
+    const track = await this.trackService.findOne(id);
+    if (track === null) {
+      return null;
+    }
+    return await this.trackService.update(id, { isFavorite: false });
   }
 
   // artist
-  createFavArtist(id: string) {
-    const artist = this.artistService.findOne(id);
-    if (artist === undefined) {
-      return undefined;
+  async createFavArtist(id: string) {
+    console.log('createFavArtist-->', id);
+    const artist = await this.artistService.findOne(id);
+    console.log('artist', artist);
+    if (artist === null) {
+      return null;
     }
-    db.favorites.save(id, 'artists', artist);
+    await this.artistService.update(id, { isFavorite: true });
     return id;
   }
-  removeFavArtist(id: string) {
-    return db.favorites.delete(id, 'artists');
+  async removeFavArtist(id: string) {
+    const artist = await this.artistService.findOne(id);
+    if (artist === null) {
+      return null;
+    }
+    await this.artistService.update(id, { isFavorite: false });
   }
   // album
-  createFavAlbum(id: string) {
-    const album = this.albumService.findOne(id);
-    if (album === undefined) {
-      return undefined;
+  async createFavAlbum(id: string) {
+    console.log('createFavAlbum-->', id);
+
+    const album = await this.albumService.findOne(id);
+    console.log('album', album);
+
+    if (album === null) {
+      return null;
     }
-    db.favorites.save(id, 'albums', album);
+    await this.albumService.update(id, { isFavorite: true });
     return id;
   }
 
-  removeFavAlbum(id: string) {
-    return db.favorites.delete(id, 'albums');
+  async removeFavAlbum(id: string) {
+    const album = await this.albumService.findOne(id);
+    if (album === null) {
+      return null;
+    }
+    await this.albumService.update(id, { isFavorite: false });
   }
 }

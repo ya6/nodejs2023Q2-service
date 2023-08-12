@@ -11,6 +11,9 @@ export class Artist {
 
   @Column()
   grammy: boolean;
+  
+  @Column({ default: false })
+  isFavorite: boolean;
 
   @OneToMany(() => Album, (album) => album.artist)
   albums: Album[];

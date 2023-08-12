@@ -10,10 +10,10 @@ export class Album {
   name: string;
 
   @Column()
-  year: string;
+  year: number;
 
-  // @Column({ nullable: true })
-  // artistId: string;
+  @Column({ default: false })
+  isFavorite: boolean;
 
   @ManyToOne(() => Artist, (artist) => artist.albums)
   artist: Artist;

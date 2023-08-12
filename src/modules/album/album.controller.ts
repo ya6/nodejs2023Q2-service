@@ -21,24 +21,24 @@ export class AlbumController {
   constructor(private readonly albumService: AlbumService) {}
 
   @Post()
-  create(@Body() createAlbumDto: CreateAlbumDto) {
-    return this.albumService.create(createAlbumDto);
+  async create(@Body() createAlbumDto: CreateAlbumDto) {
+    return await this.albumService.create(createAlbumDto);
   }
 
   @Get()
-  findAll() {
-    return this.albumService.findAll();
+  async findAll() {
+    return await this.albumService.findAll();
   }
 
   @Get(':id')
-  findOne(
+  async findOne(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
   ) {
     const { id } = idDto;
-    const album = this.albumService.findOne(id);
+    const album = await this.albumService.findOne(id);
 
-    if (album === undefined) {
+    if (album === null) {
       response.status(404).send();
     }
     if (album) {
@@ -47,14 +47,14 @@ export class AlbumController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
     @Body() updateAlbumDto: UpdateAlbumDto,
   ) {
     const { id } = idDto;
-    const album = this.albumService.update(id, updateAlbumDto);
-    if (album === undefined) {
+    const album = await this.albumService.update(id, updateAlbumDto);
+    if (album === null) {
       response.status(404).send();
     }
     if (album) {
@@ -63,13 +63,13 @@ export class AlbumController {
   }
 
   @Delete(':id')
-  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+  async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
-    const result = this.albumService.remove(id);
-    if (result === undefined) {
+    const result = await this.albumService.remove(id);
+    if (result === 0) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result === 1) {
       response.status(204).send();
     }
   }

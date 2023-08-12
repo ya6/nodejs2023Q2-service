@@ -2,51 +2,62 @@ import { Injectable } from '@nestjs/common';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { v4 as uuidv4 } from 'uuid';
-import db from 'src/db/db';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Album } from 'src/entities/album.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AlbumService {
-  create(reateAlbumDto: CreateAlbumDto) {
+  constructor(
+    @InjectRepository(Album) private albumRepository: Repository<Album>,
+  ) {}
+  async create(reateAlbumDto: CreateAlbumDto) {
     const { name, year, artistId } = reateAlbumDto; // ???
-
-    const newAlbum = db.album.create({
+    const artist = {};
+    const newAlbum = this.albumRepository.create({
       id: uuidv4(),
       name,
       year,
-      artistId: artistId || null, // refers to Artist
+      artist: artist || null, // refers to Artist
     });
-    const createdAlbum = db.album.save(newAlbum);
+    const createdAlbum = await this.albumRepository.save(newAlbum);
     return createdAlbum;
   }
 
-  findAll() {
-    const albums = db.album.findAll();
-    return albums;
+  async findAll() {
+    return await this.albumRepository.find();
+  }
+  async findFavorites() {
+    return await this.albumRepository.find({
+      relations: {
+        artist: true,
+      },
+      where: { isFavorite: true },
+      select: { id: true, name: true, year: true, artist: { id: true } },
+    });
   }
 
-  findOne(id: string) {
-    const album = db.album.findOne(id);
-    if (album === undefined) {
-      return undefined;
-    }
+  async findOne(id: string) {
+    const album = await this.albumRepository.findOne({ where: { id } });
     return album;
   }
 
-  update(id: string, updateAlbumDto: UpdateAlbumDto) {
-    const album = db.album.findOne(id);
-    if (album === undefined) {
-      return undefined;
+  async update(id: string, updateAlbumDto: UpdateAlbumDto) {
+    const album = await this.albumRepository.findOne({ where: { id } });
+    if (album === null) {
+      return null;
     }
 
     const chagedAlbum = {
       ...album,
       ...updateAlbumDto,
     };
-    const updatedAlbumt = db.album.update(chagedAlbum);
+    const updatedAlbumt = await this.albumRepository.save(chagedAlbum);
     return updatedAlbumt;
   }
 
-  remove(id: string) {
-    return db.album.delete(id);
+  async remove(id: string) {
+    const { affected } = await this.albumRepository.delete(id);
+    return affected;
   }
 }

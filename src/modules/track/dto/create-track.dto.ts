@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsNumber,
+  IsBoolean,
+  IsNotEmpty,
+  NotEquals,
+} from 'class-validator';
 export class CreateTrackDto {
   @ApiProperty({
     description: 'Track name',
@@ -7,6 +14,8 @@ export class CreateTrackDto {
     example: "Don't stop me now",
   })
   @IsString()
+  @IsNotEmpty()
+  @NotEquals(null)
   name: string;
 
   @ApiProperty({
@@ -34,4 +43,8 @@ export class CreateTrackDto {
   })
   @IsNumber()
   duration: number; // integer number
+
+  @IsOptional()
+  @IsBoolean()
+  isFavorite: boolean;
 }

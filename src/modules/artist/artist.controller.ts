@@ -21,24 +21,26 @@ export class ArtistController {
   constructor(private readonly artistService: ArtistService) {}
 
   @Post()
-  create(@Body() createArtistDto: CreateArtistDto) {
-    return this.artistService.create(createArtistDto);
+  async create(@Body() createArtistDto: CreateArtistDto) {
+    // console.log('artist create', createArtistDto);
+
+    return await this.artistService.create(createArtistDto);
   }
 
   @Get()
-  findAll() {
-    return this.artistService.findAll();
+  async findAll() {
+    return await this.artistService.findAll();
   }
 
   @Get(':id')
-  findOne(
+  async findOne(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
   ) {
     const { id } = idDto;
-    const artist = this.artistService.findOne(id);
+    const artist = await this.artistService.findOne(id);
 
-    if (artist === undefined) {
+    if (artist === null) {
       response.status(404).send();
     }
     if (artist) {
@@ -47,15 +49,15 @@ export class ArtistController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
     @Body() updateArtistDto: UpdateArtistDto,
   ) {
     const { id } = idDto;
-    const artist = this.artistService.update(id, updateArtistDto);
+    const artist = await this.artistService.update(id, updateArtistDto);
 
-    if (artist === undefined) {
+    if (artist === null) {
       response.status(404).send();
     }
     if (artist) {
@@ -64,13 +66,13 @@ export class ArtistController {
   }
 
   @Delete(':id')
-  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+  async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
-    const result = this.artistService.remove(id);
-    if (result === undefined) {
+    const result = await this.artistService.remove(id);
+    if (result === 0) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result === 1) {
       response.status(204).send();
     }
   }

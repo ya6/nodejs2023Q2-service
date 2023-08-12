@@ -21,13 +21,13 @@ export class TrackController {
   constructor(private readonly trackService: TrackService) {}
 
   @Post()
-  create(@Body() createTrackDto: CreateTrackDto) {
-    return this.trackService.create(createTrackDto);
+  async create(@Body() createTrackDto: CreateTrackDto) {
+    return await this.trackService.create(createTrackDto);
   }
 
   @Get()
-  findAll() {
-    return this.trackService.findAll();
+  async findAll() {
+    return await this.trackService.findAll();
   }
 
   @Get(':id')
@@ -36,9 +36,9 @@ export class TrackController {
     @Param() idDto: uuidDto,
   ) {
     const { id } = idDto;
-    const track = this.trackService.findOne(id);
+    const track = await this.trackService.findOne(id);
 
-    if (track === undefined) {
+    if (track === null) {
       response.status(404).send();
     }
     if (track) {
@@ -47,15 +47,15 @@ export class TrackController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Res({ passthrough: true }) response: Response,
     @Param() idDto: uuidDto,
     @Body() updateTrackDto: UpdateTrackDto,
   ) {
     const { id } = idDto;
-    const track = this.trackService.update(id, updateTrackDto);
+    const track = await this.trackService.update(id, updateTrackDto);
 
-    if (track === undefined) {
+    if (track === null) {
       response.status(404).send();
     }
     if (track) {
@@ -64,13 +64,13 @@ export class TrackController {
   }
 
   @Delete(':id')
-  remove(@Res() response: Response, @Param() idDto: uuidDto) {
+  async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
-    const result = this.trackService.remove(id);
-    if (result === undefined) {
+    const result = await this.trackService.remove(id);
+    if (result === 0) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result === 1) {
       response.status(204).send();
     }
   }

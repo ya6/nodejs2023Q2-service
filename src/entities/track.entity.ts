@@ -16,6 +16,9 @@ export class Track {
   @Column()
   name: string;
 
+  @Column({ default: false })
+  isFavorite: boolean;
+
   @OneToOne(() => Artist)
   @JoinColumn()
   artist: Artist;

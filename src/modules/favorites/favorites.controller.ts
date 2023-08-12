@@ -10,16 +10,16 @@ export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}
 
   @Get()
-  findAll() {
-    return this.favoritesService.findAll();
+  async findAll() {
+    return await this.favoritesService.findAll();
   }
   // track
   @Post('track/:id')
-  createFavTrack(@Res() response: Response, @Param() idDto: uuidDto) {
+  async createFavTrack(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
-    const result = this.favoritesService.createFavTrack(id);
+    const result = await this.favoritesService.createFavTrack(id);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(422).send();
     }
     if (result) {
@@ -28,26 +28,27 @@ export class FavoritesController {
   }
 
   @Delete('track/:id')
-  removeFavTrack(@Res() response: Response, @Param() idDto: uuidDto) {
+  async removeFavTrack(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
 
-    const result = this.favoritesService.removeFavTrack(id);
+    const result = await this.favoritesService.removeFavTrack(id);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result) {
       response.status(204).send();
     }
   }
   // artist
   @Post('artist/:id')
-  createFavArtist(@Res() response: Response, @Param() idDto: uuidDto) {
+  async createFavArtist(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
 
-    const result = this.favoritesService.createFavArtist(id);
+    const result = await this.favoritesService.createFavArtist(id);
+    console.log('fav cr artist res', result);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(422).send();
     }
     if (result) {
@@ -56,27 +57,27 @@ export class FavoritesController {
   }
 
   @Delete('artist/:id')
-  removeFavArtist(@Res() response: Response, @Param() idDto: uuidDto) {
+  async removeFavArtist(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
 
-    const result = this.favoritesService.removeFavArtist(id);
+    const result = await this.favoritesService.removeFavArtist(id);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result) {
       response.status(204).send();
     }
   }
 
   // album
   @Post('album/:id')
-  createFavAlbum(@Res() response: Response, @Param() idDto: uuidDto) {
+  async createFavAlbum(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
 
-    const result = this.favoritesService.createFavAlbum(id);
+    const result = await this.favoritesService.createFavAlbum(id);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(422).send();
     }
     if (result) {
@@ -85,15 +86,15 @@ export class FavoritesController {
   }
 
   @Delete('album/:id')
-  removeFavAlbum(@Res() response: Response, @Param() idDto: uuidDto) {
+  async removeFavAlbum(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
 
-    const result = this.favoritesService.removeFavAlbum(id);
+    const result = await this.favoritesService.removeFavAlbum(id);
 
-    if (result === undefined) {
+    if (result === null) {
       response.status(404).send();
     }
-    if (result === null) {
+    if (result) {
       response.status(204).send();
     }
   }

@@ -71,7 +71,6 @@ export class UserController {
   async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
     const result = await this.userService.remove(id);
-    console.log('del', result);
 
     if (result === 0) {
       response.status(404).send();
