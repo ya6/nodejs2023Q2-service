@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,8 +10,10 @@ import { Artist } from 'src/entities/artist.entity';
 @Injectable()
 export class AlbumService {
   constructor(
-    @InjectRepository(Album) private albumRepository: Repository<Album>,
-    @InjectRepository(Artist) private artistRepository: Repository<Artist>,
+    @Inject('ALBUM_REPOSITORY')
+    private albumRepository: Repository<Album>,
+    @Inject('ARTIST_REPOSITORY')
+    private artistRepository: Repository<Artist>,
   ) {}
 
   async create(reateAlbumDto: CreateAlbumDto) {

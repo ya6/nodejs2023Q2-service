@@ -1,15 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 import { v4 as uuidv4 } from 'uuid';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Artist } from 'src/entities/artist.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ArtistService {
   constructor(
-    @InjectRepository(Artist) private artistRepository: Repository<Artist>,
+    @Inject('ARTIST_REPOSITORY')
+    private artistRepository: Repository<Artist>,
   ) {}
   async create(createArtistDto: CreateArtistDto) {
     const { name, grammy } = createArtistDto;
