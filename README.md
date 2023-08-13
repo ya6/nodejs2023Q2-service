@@ -4,6 +4,8 @@ clone repository
 
 git checkout part-2
 
+rename: .env.examlpe --> .env
+
 docker-compose up -d
 
 localhost:4000 - nest app
@@ -11,7 +13,3 @@ localhost:4000/docs - swagger
 
 if need
 localhost:8080 - adminer for postgres container
-
-
-
-
