@@ -15,9 +15,9 @@ services:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_USER= ${DB_USERNAME}
-      - POSTGRES_PASSWORD= ${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_DATABASE=service
     volumes:
       - ./init-scripts:/docker-entrypoint-initdb.d
       - postgres_data:/var/lib/postgresql/data
