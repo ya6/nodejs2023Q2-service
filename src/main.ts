@@ -7,6 +7,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { CustomLogger } from './common/custom-logger/custom-logger.class';
 import { HttpExeptionFilter } from './common/filters/http-exeption.filter';
 import { CustomLoggerModule } from './modules/custom-logger/custom-logger.module';
+import { writeToFile } from './utils/writeFile';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -40,12 +41,27 @@ async function bootstrap() {
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', async (error) => {
   console.error('Uncaught Exception:', error);
+  if (process.env.LOG_TARGET === 'file') {
+    try {
+      await writeToFile('errors.txt', JSON.stringify(error));
+    } catch (error) {
+      console.error('Error writing to file:', error);
+    }
+  }
+  process.exit(1);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', async (reason, promise) => {
   console.error('Unhandled Promise Rejection:', reason);
+  if (process.env.LOG_TARGET === 'file') {
+    try {
+      await writeToFile('errors.txt', JSON.stringify(reason));
+    } catch (error) {
+      console.error('Error writing to file:', error);
+    }
+  }
 });
 
 bootstrap();
