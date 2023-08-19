@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  NotFoundException,
-  ForbiddenException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { IUser } from '../../types/Types';
@@ -69,10 +65,9 @@ export class UserService {
 
   cleanUser(user: IUser) {
     if (!user) {
-      return user;
+      return null;
     }
     const { password, createdAt, updatedAt, ...rest } = user;
-    password; // del
     return {
       ...rest,
       createdAt: Number(createdAt),

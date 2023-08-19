@@ -22,8 +22,6 @@ export class ArtistController {
 
   @Post()
   async create(@Body() createArtistDto: CreateArtistDto) {
-    // console.log('artist create', createArtistDto);
-
     return await this.artistService.create(createArtistDto);
   }
 

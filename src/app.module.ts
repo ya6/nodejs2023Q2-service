@@ -8,6 +8,8 @@ import { AlbumModule } from './modules/album/album.module';
 import { FavoritesModule } from './modules/favorites/favorites.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { CommonModule } from './modules/common/common.module';
+import { CustomLoggerModule } from './modules/custom-logger/custom-logger.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { DataSource } from 'typeorm';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        host: configService.get('DB_HOST'),
+        host: configService.get('DB_HOST_dev'),
         port: configService.get('DB_PORT'),
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
@@ -40,6 +42,8 @@ import { DataSource } from 'typeorm';
     TrackModule,
     AlbumModule,
     FavoritesModule,
+    CommonModule,
+    CustomLoggerModule,
   ],
   controllers: [],
   providers: [],

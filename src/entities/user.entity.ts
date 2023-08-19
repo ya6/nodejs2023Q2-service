@@ -15,8 +15,10 @@ export class User {
   version: number;
 
   @Column({ type: 'bigint' })
+  // @Type(() => Number) check for it
   createdAt: number;
 
   @Column({ type: 'bigint' })
+  // @Type(() => Number) check for it
   updatedAt: number;
 }
