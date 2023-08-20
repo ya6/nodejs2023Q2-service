@@ -22,10 +22,8 @@ export class AccessTokenGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    console.log(request.headers);
 
     const token = this.extractTokenFromHeader(request);
-    console.log(token);
 
     if (!token) {
       throw new UnauthorizedException();
@@ -36,7 +34,6 @@ export class AccessTokenGuard implements CanActivate {
         this.jwtConfiguration,
       );
       request[REQUEST_USER_KEY] = payload;
-      console.log(payload);
     } catch {
       throw new UnauthorizedException();
     }

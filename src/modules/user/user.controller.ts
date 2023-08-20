@@ -15,9 +15,6 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from '../../common/dto/uuid.dto';
 import { UpdatePasswordDto } from './dto/updatePassword.dto';
-import { AuthType } from 'src/types/Types';
-import { Auth } from 'src/common/decorators/auth.decorator';
-import { ActiveUser } from 'src/common/decorators/active-user.decorator';
 
 @ApiTags('User')
 @ApiBearerAuth()
@@ -31,9 +28,7 @@ export class UserController {
   }
 
   @Get()
-  async findAll(@ActiveUser() user) {
-    console.log(user);
-
+  async findAll() {
     return await this.userService.findAll();
   }
 

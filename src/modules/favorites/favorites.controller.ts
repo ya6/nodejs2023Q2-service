@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Param, Delete, Res } from '@nestjs/common';
 import { FavoritesService } from './favorites.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from 'src/common/dto/uuid.dto';
 
+@ApiBearerAuth()
 @ApiTags('Favotites')
 @Controller('favs')
 export class FavoritesController {
@@ -46,7 +47,6 @@ export class FavoritesController {
     const { id } = idDto;
 
     const result = await this.favoritesService.createFavArtist(id);
-    // console.log('fav cr artist res', result);
 
     if (result === null) {
       response.status(422).send();

@@ -7,7 +7,6 @@ import {
 import type { ValidationError } from 'class-validator';
 import { Request, Response } from 'express';
 import { CustomLogger } from '../custom-logger/custom-logger.class';
-import process from 'node:process';
 import { writeToFile } from 'src/utils/writeFile';
 
 @Catch()
@@ -28,6 +27,13 @@ export class HttpExeptionFilter implements ExceptionFilter {
     };
 
     this.customLogger.error(validation_exeptions);
+    if (process.env.LOG_TARGET === 'file') {
+      try {
+        await writeToFile('errors.txt', JSON.stringify(validation_exeptions));
+      } catch (error) {
+        console.error('Error writing to file:', error);
+      }
+    }
 
     if (status === 500) {
       response.status(500).json({

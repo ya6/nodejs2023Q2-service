@@ -17,13 +17,13 @@ async function bootstrap() {
     .select(CustomLoggerModule)
     .get(CustomLogger, { strict: true });
 
-  // app.useGlobalFilters(new HttpExeptionFilter(logger));
+  app.useGlobalFilters(new HttpExeptionFilter(logger));
 
-  // app.useGlobalPipes(
-  //   new ValidationPipe({
-  //     whitelist: true,
-  //   }),
-  // );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Home Library Service')

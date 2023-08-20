@@ -11,10 +11,11 @@ import {
 import { ArtistService } from './artist.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from 'src/common/dto/uuid.dto';
 
+@ApiBearerAuth()
 @ApiTags('Artist')
 @Controller('artist')
 export class ArtistController {

@@ -11,10 +11,11 @@ import {
 import { AlbumService } from './album.service';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { uuidDto } from 'src/common/dto/uuid.dto';
 
+@ApiBearerAuth()
 @ApiTags('Album')
 @Controller('album')
 export class AlbumController {

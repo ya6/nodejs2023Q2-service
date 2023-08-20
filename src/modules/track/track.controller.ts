@@ -11,10 +11,11 @@ import {
 import { TrackService } from './track.service';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { uuidDto } from '../../common/dto/uuid.dto';
 import { Response } from 'express';
 
+@ApiBearerAuth()
 @ApiTags('Track')
 @Controller('track')
 export class TrackController {

@@ -3,7 +3,6 @@ import { writeToFile } from 'src/utils/writeFile';
 
 export class CustomLogger extends ConsoleLogger {
   async error(message: any, ...optionalParams: any[]) {
-    // add output logic
     if (process.env.LOG_TARGET === 'file') {
       await writeToFile('errors.txt', JSON.stringify(message));
     }
