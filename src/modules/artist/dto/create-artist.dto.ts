@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsString,
-  IsBoolean,
-  IsOptional,
-  IsNotEmpty,
-  NotEquals,
-} from 'class-validator';
+import { IsString, IsBoolean, IsOptional } from 'class-validator';
 export class CreateArtistDto {
   @ApiProperty({
     description: 'Artist name',

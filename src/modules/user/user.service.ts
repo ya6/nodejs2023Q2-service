@@ -68,6 +68,7 @@ export class UserService {
       return null;
     }
     const { password, createdAt, updatedAt, ...rest } = user;
+    password; // del
     return {
       ...rest,
       createdAt: Number(createdAt),

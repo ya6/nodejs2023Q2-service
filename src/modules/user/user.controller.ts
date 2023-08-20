@@ -7,7 +7,6 @@ import {
   Delete,
   Res,
   Put,
-  HttpCode,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,8 +15,8 @@ import { Response } from 'express';
 import { uuidDto } from '../../common/dto/uuid.dto';
 import { UpdatePasswordDto } from './dto/updatePassword.dto';
 
-@ApiTags('User')
 @ApiBearerAuth()
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

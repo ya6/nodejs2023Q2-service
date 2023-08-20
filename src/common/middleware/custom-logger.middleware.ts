@@ -1,14 +1,13 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { writeToFile } from '../../utils/writeFile';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class CustomLoggerMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: () => void) {
     //add logic
 
-    const { originalUrl, params, query, body } = req;
+    const { originalUrl, query, body } = req;
 
     const { statusCode } = res;
     const log = `url: ${req.get(

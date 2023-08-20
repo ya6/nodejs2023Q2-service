@@ -3,7 +3,6 @@ import {
   ForbiddenException,
   Inject,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
@@ -34,7 +33,7 @@ export class AuthenticationService {
       user.password = await this.hashService.hash(rawPassword);
 
       const { password, ...savedUser } = await this.userRepository.save(user);
-      return { savedUser };
+      return { ...savedUser };
     } catch (error) {
       const pgUniqueViolationErrorCode = '23505';
       if (error.code === pgUniqueViolationErrorCode) {

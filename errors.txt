@@ -1,0 +1,388 @@
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be equal to null","name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be equal to null","name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","year must be a number conforming to the specified constraints","artistId must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","year must be a number conforming to the specified constraints","artistId must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["name must be a string","grammy must be a boolean value"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be empty","name must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be equal to null","name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["name should not be equal to null","name should not be empty","name must be a string","year must be a number conforming to the specified constraints"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["name must be a string","year must be a number conforming to the specified constraints","artistId must be a string"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":["name must be a string","year must be a number conforming to the specified constraints","artistId must be a string"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string","password must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string","password must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["password should not be empty","password must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["password should not be empty","password must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string","password should not be empty","password must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["login must be a string","password should not be empty","password must be a string"],"error":"Bad Request","statusCode":400}
+{}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"User exists","error":"Conflict","statusCode":409}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["oldPassword must be a string","newPassword must be a string"],"error":"Bad Request","statusCode":400}
+{"message":["oldPassword must be a string","newPassword must be a string"],"error":"Bad Request","statusCode":400}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":"Unauthorized","statusCode":401}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}
+{"message":["id must be a UUID"],"error":"Bad Request","statusCode":400}

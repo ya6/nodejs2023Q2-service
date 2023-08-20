@@ -5,7 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import type { ValidationError } from 'class-validator';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { CustomLogger } from '../custom-logger/custom-logger.class';
 import { writeToFile } from 'src/utils/writeFile';
 
@@ -15,8 +15,6 @@ export class HttpExeptionFilter implements ExceptionFilter {
 
   async catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-
-    const request = ctx.getRequest<Request>();
 
     const response = ctx.getResponse<Response>();
 
