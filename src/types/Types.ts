@@ -45,3 +45,8 @@ export interface FavoritesResponse {
   albums: IAlbum[];
   tracks: ITrack[];
 }
+
+export enum AuthType {
+  Bearer,
+  None,
+}

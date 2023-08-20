@@ -7,7 +7,9 @@ import { ConfigService } from '@nestjs/config';
 export class CustomLoggerMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: () => void) {
     //add logic
+
     const { originalUrl, params, query, body } = req;
+
     const { statusCode } = res;
     const log = `url: ${req.get(
       'host',
@@ -19,8 +21,6 @@ export class CustomLoggerMiddleware implements NestMiddleware {
     console.dir(log);
 
     if (process.env.LOG_TARGET === 'file') {
-      console.log('CustomLoggerMiddleware in ');
-
       await writeToFile('logs.txt', log);
     }
 

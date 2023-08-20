@@ -16,7 +16,8 @@ async function bootstrap() {
   const logger = app
     .select(CustomLoggerModule)
     .get(CustomLogger, { strict: true });
-  app.useGlobalFilters(new HttpExeptionFilter(logger));
+
+  // app.useGlobalFilters(new HttpExeptionFilter(logger));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -27,8 +28,9 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Home Library Service')
     .setDescription('Home music library service')
-    .setVersion('1.0.0')
-    .addTag('Part 1')
+    .setVersion('1.1.0')
+    .addTag('Part 3')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/docs', app, document);

@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { CommonModule } from './modules/common/common.module';
 import { CustomLoggerModule } from './modules/custom-logger/custom-logger.module';
+import { IamModule } from './modules/iam/iam.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { CustomLoggerModule } from './modules/custom-logger/custom-logger.module
     FavoritesModule,
     CommonModule,
     CustomLoggerModule,
+    IamModule,
   ],
   controllers: [],
   providers: [],
