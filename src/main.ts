@@ -19,11 +19,11 @@ async function bootstrap() {
 
   // app.useGlobalFilters(new HttpExeptionFilter(logger));
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist: true,
+  //   }),
+  // );
 
   const config = new DocumentBuilder()
     .setTitle('Home Library Service')
