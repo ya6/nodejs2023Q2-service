@@ -1,23 +1,13 @@
-## Home Library Service Part 2
-
 clone repository
 
-git checkout part-2
+git checkout part-3
 
 rename: .env.examlpe --> .env
 
-### build from local
+#### build from local
 
-docker-compose up -d
+docker-compose up
 
-### build from dockerhub
+**nest app** --> localhost:4000
 
-docker-compose -f ./docker-compose.public.yml up -d
-
----
-
-localhost:4000 - nest app
-
-localhost:4000/docs - swagger
-
-if need, localhost:8080 - adminer for postgres container
+**swagger** --> localhost:4000/docs

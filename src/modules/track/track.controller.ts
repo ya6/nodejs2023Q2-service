@@ -68,6 +68,8 @@ export class TrackController {
   async remove(@Res() response: Response, @Param() idDto: uuidDto) {
     const { id } = idDto;
     const result = await this.trackService.remove(id);
+    console.log('-----track----', result);
+
     if (result === 0) {
       response.status(404).send();
     }

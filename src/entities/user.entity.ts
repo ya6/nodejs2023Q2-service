@@ -11,7 +11,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true })
+  @Column()
   login: string;
 
   @Column()
@@ -20,10 +20,10 @@ export class User {
   @Column({ default: 1 })
   version: number;
 
-  @Column({ type: 'int', width: 11, nullable: false, readonly: true })
+  @Column({ type: 'int' })
   createdAt: number;
 
-  @Column({ type: 'int', width: 11, nullable: false })
+  @Column({ type: 'int' })
   updatedAt: number;
 
   @BeforeInsert()

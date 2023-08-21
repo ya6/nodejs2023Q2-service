@@ -17,7 +17,8 @@ async function bootstrap() {
     .select(CustomLoggerModule)
     .get(CustomLogger, { strict: true });
 
-  app.useGlobalFilters(new HttpExeptionFilter(logger));
+  // -----conflict with tests(-----
+  // app.useGlobalFilters(new HttpExeptionFilter(logger));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -42,28 +43,28 @@ async function bootstrap() {
   await app.listen(configService.get('PORT') || 4000);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
+// -----conflict with tests(-----
+// process.on('uncaughtException', async (error) => {
+//   console.error('Uncaught Exception:', error);
+//   if (process.env.LOG_TARGET === 'file') {
+//     try {
+//       await writeToFile('errors.txt', JSON.stringify(error));
+//     } catch (error) {
+//       console.error('Error writing to file:', error);
+//     }
+//   }
+//   process.exit(1);
+// });
 
-process.on('uncaughtException', async (error) => {
-  console.error('Uncaught Exception:', error);
-  if (process.env.LOG_TARGET === 'file') {
-    try {
-      await writeToFile('errors.txt', JSON.stringify(error));
-    } catch (error) {
-      console.error('Error writing to file:', error);
-    }
-  }
-  process.exit(1);
-});
-
-process.on('unhandledRejection', async (reason, promise) => {
-  console.error('Unhandled Promise Rejection:', reason);
-  if (process.env.LOG_TARGET === 'file') {
-    try {
-      await writeToFile('errors.txt', JSON.stringify(reason));
-    } catch (error) {
-      console.error('Error writing to file:', error);
-    }
-  }
-});
+// process.on('unhandledRejection', async (reason, promise) => {
+//   console.error('Unhandled Promise Rejection:', reason);
+//   if (process.env.LOG_TARGET === 'file') {
+//     try {
+//       await writeToFile('errors.txt', JSON.stringify(reason));
+//     } catch (error) {
+//       console.error('Error writing to file:', error);
+//     }
+//   }
+// });
 
 bootstrap();
